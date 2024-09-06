@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'note_provider.dart';
+import 'theme_provider.dart';
 import 'note_edit_screen.dart';
 
 class NoteListScreen extends StatelessWidget {
@@ -8,10 +9,28 @@ class NoteListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Abfrage des aktuellen Themas (Dark Mode oder Light Mode)
+    bool isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-        backgroundColor: Colors.teal,
+        title: const Text(
+          'Notes',
+          style: TextStyle(
+            fontStyle: FontStyle.italic, // Italic Schriftstil
+            fontWeight: FontWeight.w300, // Regular 400
+            fontSize: 40, // Schriftgröße
+          ),
+        ),
+        centerTitle: true, // Überschrift zentrieren
+        backgroundColor: const Color.fromARGB(255, 0, 247, 255),
+        actions: [
+          IconButton(
+            icon: Icon(isDarkMode ? Icons.dark_mode : Icons.light_mode),
+            onPressed: () {
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme(); // Dark Mode umschalten
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,7 +40,7 @@ class NoteListScreen extends StatelessWidget {
               return const Center(
                 child: Text(
                   'No notes yet!',
-                  style: TextStyle(fontSize: 18, color: Colors.grey),
+                  style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 107, 107, 107)),
                 ),
               );
             }
@@ -35,13 +54,30 @@ class NoteListScreen extends StatelessWidget {
                     title: Text(
                       note.title,
                       style: TextStyle(
+                        color: isDarkMode ? Colors.white : Colors.black, // Schriftfarbe basierend auf dem Theme
                         decoration: note.isCompleted
                             ? TextDecoration.lineThrough
                             : TextDecoration.none,
-                        color: note.isCompleted ? Colors.grey : Colors.black,
                       ),
                     ),
-                    subtitle: Text(note.description),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          note.description,
+                          style: TextStyle(
+                            color: isDarkMode ? Colors.white70 : Colors.black87, // Beschreibung passend zum Theme
+                          ),
+                        ),
+                        Text(
+                          'Erstellt am: ${note.createdDate.toLocal().toString().split(' ')[0]}', // Datum anzeigen
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: Colors.grey, // Datum bleibt grau
+                          ),
+                        ),
+                      ],
+                    ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

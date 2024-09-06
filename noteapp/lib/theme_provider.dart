@@ -16,7 +16,7 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void _loadTheme() async {
+  void _loadTheme() {
     final box = Hive.box('settings');
     _isDarkMode = box.get('isDarkMode', defaultValue: false);
     notifyListeners();
