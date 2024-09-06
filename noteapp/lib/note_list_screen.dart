@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'note_provider.dart';
 import 'theme_provider.dart';
@@ -13,16 +14,17 @@ class NoteListScreen extends StatelessWidget {
     bool isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Notes',
-          style: TextStyle(
-            fontStyle: FontStyle.italic, // Italic Schriftstil
-            fontWeight: FontWeight.w300, // Regular 400
-            fontSize: 40, // Schriftgröße
+          style: GoogleFonts.playfairDisplay(
+            fontSize: 40, // Große Schriftgröße
+            fontWeight: FontWeight.w400, // Normales Gewicht
+            fontStyle: FontStyle.italic, // Italic Stil
+            color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
         centerTitle: true, // Überschrift zentrieren
-        backgroundColor: const Color.fromARGB(255, 0, 247, 255),
+        backgroundColor: Colors.teal,
         actions: [
           IconButton(
             icon: Icon(isDarkMode ? Icons.dark_mode : Icons.light_mode),
@@ -82,8 +84,11 @@ class NoteListScreen extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Checkbox(
-                          activeColor: Colors.teal,
                           value: note.isCompleted,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20), // Rundung der Checkbox
+                          ),
+                          activeColor: Colors.teal, // Optional: Farbe der Checkbox
                           onChanged: (bool? value) {
                             provider.toggleNoteCompletion(note); // Notiz übergeben
                           },

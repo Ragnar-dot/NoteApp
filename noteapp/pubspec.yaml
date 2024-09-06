@@ -29,6 +29,7 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.0.9
   # Fügen Sie hier weitere Abhängigkeiten hinzu und stellen Sie sicher, dass sie Null-Sicherheit unterstützen
+  google_fonts: ^4.0.3  # Füge die Google Fonts Abhängigkeit hinzu
 
 dev_dependencies:
   flutter_test:
