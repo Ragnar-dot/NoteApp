@@ -29,7 +29,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.note == null ? 'Add Note' : 'Edit Note'),
+        title: Text(widget.note == null ? 'Add Note' : 'Notiz bearbeiten'),
         backgroundColor: Colors.teal,
       ),
       body: Padding(
@@ -40,20 +40,20 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
             children: [
               TextFormField(
                 initialValue: _title,
-                decoration: const InputDecoration(labelText: 'Title'),
+                decoration: const InputDecoration(labelText: 'Titel'),
                 onSaved: (value) {
                   _title = value ?? '';
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a title';
+                    return 'Bitte geben Sie einen Titel ein.';
                   }
                   return null;
                 },
               ),
               TextFormField(
                 initialValue: _description,
-                decoration: const InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Erklärung'),
                 onSaved: (value) {
                   _description = value ?? '';
                 },
@@ -78,7 +78,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                     Navigator.pop(context);
                   }
                 },
-                child: const Text('Save'),
+                child: const Text('Speichern'),
               ),
             ],
           ),

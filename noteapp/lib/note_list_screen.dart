@@ -137,14 +137,14 @@ class NoteListScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Delete Note'),
-          content: const Text('Are you sure you want to delete this note?'),
+          title: const Text('Notiz löschen'),
+          content: const Text('Möchten Sie diese Notiz wirklich löschen?'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Dialog schließen
               },
-              child: const Text('Cancel'),
+              child: const Text('zurück'),
             ),
             TextButton(
               onPressed: () {
@@ -152,7 +152,7 @@ class NoteListScreen extends StatelessWidget {
                 Navigator.of(context).pop(); // Dialog schließen
               },
               child: const Text(
-                'Delete',
+                'Löschen',
                 style: TextStyle(color: Colors.red),
               ),
             ),

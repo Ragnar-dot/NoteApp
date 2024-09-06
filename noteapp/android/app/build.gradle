@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.noteapp"
-    compileSdk = 33  // Setze die compileSdkVersion direkt
+    compileSdk = 34  // Update compileSdkVersion to 34
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -20,15 +20,15 @@ android {
 
     defaultConfig {
         applicationId = "com.example.noteapp"
-        minSdkVersion = 21  // Setze die minSdkVersion direkt
-        targetSdkVersion = 33  // Setze die targetSdkVersion direkt
-        versionCode = 1  // Setze deine Versionierung
+        minSdkVersion = 21  // Keep the minSdkVersion at 21
+        targetSdkVersion = 34  // Update targetSdkVersion to 34
+        versionCode = 1
         versionName = "1.0"
     }
 
     buildTypes {
         release {
-            signingConfig = signingConfigs.debug  // Nur für Tests, setze dies später auf dein Signier-Setup
+            signingConfig = signingConfigs.debug  // Only for testing, update this for production signing
         }
     }
 }
