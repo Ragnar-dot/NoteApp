@@ -52,27 +52,27 @@ class _NoteListScreenState extends State<NoteListScreen> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.teal, // Hintergrundfarbe der App-Leiste
         actions: [
-          PopupMenuButton<String>(
-            onSelected: (String languageCode) {
+          PopupMenuButton<String>( // Sprachauswahl
+            onSelected: (String languageCode) { // Sprache auswählen
               loadJsonLanguage(languageCode); // Sprache laden
             },
             icon: const Icon(Icons.settings), // Einstellungs-Icon
             
-            itemBuilder: (BuildContext context) {
+            itemBuilder: (BuildContext context) { // Sprachen zur Auswahl
               return [
                 PopupMenuItem(
                   value: 'en',
-                  child: Text(getTranslatedValue('english')), // Englisch
+                  child: Text(getTranslatedValue('EN')), // Englisch
                 ),
                 PopupMenuItem(
                   value: 'de',
-                  child: Text(getTranslatedValue('german')), // Deutsch
+                  child: Text(getTranslatedValue('DE')), // Deutsch
                 ),
                 PopupMenuItem(
                   value: 'pl',
-                  child: Text(getTranslatedValue('polish')), // Polnisch
+                  child: Text(getTranslatedValue('PL')), // Polnisch
                 ),
               ];
             },
@@ -167,8 +167,8 @@ class _NoteListScreenState extends State<NoteListScreen> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.teal,
+      floatingActionButton: FloatingActionButton(                                                     // Neue Notiz hinzufügen  button
+        backgroundColor: const Color.fromARGB(255, 51, 194, 180),
         onPressed: () {
           Navigator.push(
             context,

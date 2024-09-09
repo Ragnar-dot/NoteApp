@@ -80,7 +80,9 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.teal),
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.white, backgroundColor: const Color.fromARGB(255, 0, 131, 118), // Textfarbe des Buttons Save
+                ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
@@ -100,8 +102,6 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
                   }
                 },
                 child: Text(getTranslatedValue('save_button')),
-                  
-
               ),
             ],
           ),

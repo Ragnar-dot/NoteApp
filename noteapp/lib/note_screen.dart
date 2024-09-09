@@ -59,7 +59,7 @@ class NoteListScreen extends StatelessWidget {
             ),
           );
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add), // Add new note button
       ),
     );
   }
