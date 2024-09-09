@@ -1,0 +1,17 @@
+{
+    "titel": "App Notatek",
+    "add_note": "Dodaj notatkę",
+    "edit_note": "Edytuj notatkę",
+    "title_label": "Tytuł",
+    "description_label": "Opis",
+    "save_button": "Zapisz",
+    "empty_title_error": "Proszę wprowadzić tytuł.",
+    "back": "Wróć",
+    "delete_note": "Usuń notatkę",
+    "created_at": "Utworzono dnia:",
+    "no_notes_yet": "Brak notatek!",
+    "confirm_delete": "Czy na pewno chcesz usunąć tę notatkę?",
+    "delete": "Usuń"
+  }
+  
+  

@@ -1,0 +1,17 @@
+{
+    "titel": "Notiz App",
+    "add_note": "Notiz hinzufügen",
+    "edit_note": "Notiz bearbeiten",
+    "title_label": "Titel",
+    "description_label": "Beschreibung",
+    "save_button": "Speichern",
+    "empty_title_error": "Bitte geben Sie einen Titel ein.",
+    "back": "Zurück",
+    "delete_note": "Notiz löschen",
+    "created_at": "Erstellt am:",
+    "no_notes_yet": "Noch keine Notizen!",
+    "confirm_delete": "Möchten Sie diese Notiz wirklich löschen?",
+    "delete": "Löschen"
+  }
+  
+  

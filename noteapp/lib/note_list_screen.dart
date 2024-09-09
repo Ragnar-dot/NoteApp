@@ -4,28 +4,79 @@ import 'package:provider/provider.dart';
 import 'note_provider.dart';
 import 'theme_provider.dart';
 import 'note_edit_screen.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
-class NoteListScreen extends StatelessWidget {
+class NoteListScreen extends StatefulWidget {
   const NoteListScreen({Key? key}) : super(key: key);
 
   @override
+  _NoteListScreenState createState() => _NoteListScreenState();
+}
+
+class _NoteListScreenState extends State<NoteListScreen> {
+  Map<String, String> _localizedStrings = {};
+  String currentLanguage = 'en'; // Standardmäßig Englisch
+
+  @override
+  void initState() {
+    super.initState();
+    loadJsonLanguage(currentLanguage); // Standardmäßig Englisch laden
+  }
+
+  Future<void> loadJsonLanguage(String languageCode) async {
+    String jsonString = await rootBundle.loadString('assets/lang/$languageCode.json');
+    Map<String, dynamic> jsonMap = json.decode(jsonString);
+    setState(() {
+      currentLanguage = languageCode;
+      _localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
+    });
+  }
+
+  String getTranslatedValue(String key) {
+    return _localizedStrings[key] ?? key;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // Abfrage des aktuellen Themas (Dark Mode oder Light Mode)
     bool isDarkMode = Provider.of<ThemeProvider>(context).isDarkMode;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Notes',
+          getTranslatedValue('titel'),
           style: GoogleFonts.playfairDisplay(
-            fontSize: 40, // Große Schriftgröße
-            fontWeight: FontWeight.w400, // Normales Gewicht
-            fontStyle: FontStyle.italic, // Italic Stil
+            fontSize: 40,
+            fontWeight: FontWeight.w400,
+            fontStyle: FontStyle.italic,
             color: isDarkMode ? Colors.white : Colors.black,
           ),
         ),
-        centerTitle: true, // Überschrift zentrieren
+        centerTitle: true,
         backgroundColor: Colors.teal,
         actions: [
+          PopupMenuButton<String>(
+            onSelected: (String languageCode) {
+              loadJsonLanguage(languageCode); // Sprache laden
+            },
+            icon: const Icon(Icons.settings), // Einstellungs-Icon
+            
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  value: 'en',
+                  child: Text(getTranslatedValue('english')), // Englisch
+                ),
+                PopupMenuItem(
+                  value: 'de',
+                  child: Text(getTranslatedValue('german')), // Deutsch
+                ),
+                PopupMenuItem(
+                  value: 'pl',
+                  child: Text(getTranslatedValue('polish')), // Polnisch
+                ),
+              ];
+            },
+          ),
           IconButton(
             icon: Icon(isDarkMode ? Icons.dark_mode : Icons.light_mode),
             onPressed: () {
@@ -39,10 +90,10 @@ class NoteListScreen extends StatelessWidget {
         child: Consumer<NoteProvider>(
           builder: (context, provider, child) {
             if (provider.notes.isEmpty) {
-              return const Center(
+              return Center(
                 child: Text(
-                  'No notes yet!',
-                  style: TextStyle(fontSize: 18, color: Color.fromARGB(255, 107, 107, 107)),
+                  getTranslatedValue('no_notes_yet'),
+                  style: const TextStyle(fontSize: 18, color: Color.fromARGB(255, 107, 107, 107)),
                 ),
               );
             }
@@ -68,14 +119,14 @@ class NoteListScreen extends StatelessWidget {
                         Text(
                           note.description,
                           style: TextStyle(
-                            color: isDarkMode ? Colors.white70 : Colors.black87, // Beschreibung passend zum Theme
+                            color: isDarkMode ? const Color.fromARGB(255, 255, 255, 255) : Colors.black87, // Beschreibung passend zum Theme
                           ),
                         ),
                         Text(
-                          'Erstellt am: ${note.createdDate.toLocal().toString().split(' ')[0]}', // Datum anzeigen
-                          style: const TextStyle(
+                          '${getTranslatedValue('created_at')} ${note.createdDate.toLocal().toString().split(' ')[0]}', // Datum anzeigen
+                          style: TextStyle(
                             fontSize: 12,
-                            color: Colors.grey, // Datum bleibt grau
+                            color: isDarkMode ? const Color.fromARGB(193, 255, 255, 255) : Colors.black,
                           ),
                         ),
                       ],
@@ -105,7 +156,7 @@ class NoteListScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NoteEditScreen(note: note, index: index),
+                          builder: (context) => NoteEditScreen(note: note, index: index, currentLanguage: currentLanguage), // Sprache weitergeben
                         ),
                       );
                     },
@@ -122,7 +173,7 @@ class NoteListScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const NoteEditScreen(),
+              builder: (context) => NoteEditScreen(currentLanguage: currentLanguage), // Sprache weitergeben
             ),
           );
         },
@@ -137,23 +188,23 @@ class NoteListScreen extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('Notiz löschen'),
-          content: const Text('Möchten Sie diese Notiz wirklich löschen?'),
+          title: Text(getTranslatedValue('delete_note')),
+          content: Text(getTranslatedValue('confirm_delete')),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Dialog schließen
               },
-              child: const Text('zurück'),
+              child: Text(getTranslatedValue('back')),
             ),
             TextButton(
               onPressed: () {
                 provider.deleteNoteAt(index); // Notiz löschen
                 Navigator.of(context).pop(); // Dialog schließen
               },
-              child: const Text(
-                'Löschen',
-                style: TextStyle(color: Colors.red),
+              child: Text(
+                getTranslatedValue('delete'),
+                style: const TextStyle(color: Colors.red),
               ),
             ),
           ],

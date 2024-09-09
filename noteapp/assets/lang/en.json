@@ -1,0 +1,18 @@
+{
+    "titel": "Note App",
+    "add_note": "Add Note",
+    "edit_note": "Edit Note",
+    "title_label": "Title",
+    "description_label": "Description",
+    "save_button": "Save",
+    "empty_title_error": "Please enter a title.",
+    "back": "Back",
+    "delete_note": "Delete Note",
+    "created_at": "Created on:",
+    "no_notes_yet": "No notes yet!",
+    "confirm_delete": "Do you really want to delete this note?",
+    "delete": "Delete"
+    
+   
+  }
+  

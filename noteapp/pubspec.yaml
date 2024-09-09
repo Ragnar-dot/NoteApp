@@ -16,6 +16,11 @@ dependencies:
   hive_flutter: ^1.1.0
   path_provider: ^2.0.9
   google_fonts: ^4.0.3  # Füge die Google Fonts Abhängigkeit hinzu
+   
+   
+  flutter_localizations:
+    sdk: flutter
+  intl: 0.19.0
 
 dev_dependencies:
   flutter_test:
@@ -29,10 +34,14 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-assets:
-    - assets/icon/icon/app_icon.png
+  assets:
+    #- assets/icon/icon/app_icon.png
     - assets/icon/icon/app_icon_background.png
-    - assets/icon/icon/app_icon_foreground.png   
+    - assets/icon/icon/app_icon_foreground.png
+    
+    - assets/lang/en.json
+    - assets/lang/de.json
+    - assets/lang/pl.json   
 
 flutter_icons:
   android: true

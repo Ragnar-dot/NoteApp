@@ -37,7 +37,7 @@ class NoteListScreen extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => NoteEditScreen(
                         note: note,
-                        index: index,
+                        index: index, currentLanguage: '',
                       ),
                     ),
                   );
@@ -55,7 +55,7 @@ class NoteListScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const NoteEditScreen(),
+              builder: (context) => const NoteEditScreen(currentLanguage: '',),
             ),
           );
         },
