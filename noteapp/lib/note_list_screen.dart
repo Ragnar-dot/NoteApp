@@ -7,10 +7,12 @@ import 'note_edit_screen.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart';
 
+
 class NoteListScreen extends StatefulWidget {
   const NoteListScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _NoteListScreenState createState() => _NoteListScreenState();
 }
 
@@ -178,6 +180,7 @@ class _NoteListScreenState extends State<NoteListScreen> {
           );
         },
         child: const Icon(Icons.add),
+        
       ),
     );
   }

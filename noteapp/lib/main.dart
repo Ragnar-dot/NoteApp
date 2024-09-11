@@ -7,6 +7,7 @@ import 'theme_provider.dart';
 import 'note_list_screen.dart';
 
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
