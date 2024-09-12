@@ -180,8 +180,12 @@ class _NoteListScreenState extends State<NoteListScreen> {
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton(                                                     // Neue Notiz hinzufügen  button
-        backgroundColor: const Color.fromARGB(255, 51, 194, 180),
+      floatingActionButton: FloatingActionButton(
+        // Neue Notiz hinzufügen  button
+        backgroundColor: const Color.fromARGB(172, 51, 194, 180),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30), // Rundung des Buttons
+        ),
         onPressed: () {
           Navigator.push(
             context,
@@ -191,7 +195,6 @@ class _NoteListScreenState extends State<NoteListScreen> {
           );
         },
         child: const Icon(Icons.add),
-        
       ),
     );
   }
