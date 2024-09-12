@@ -104,11 +104,12 @@ class _NoteListScreenState extends State<NoteListScreen> {
               itemBuilder: (context, index) {
                 final note = provider.notes[index]; // Die tatsächliche Notiz
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 2),
+                  margin: const EdgeInsets.symmetric(vertical: 3),
+                  color: isDarkMode ? const Color.fromARGB(74, 78, 78, 78) : const Color.fromARGB(255, 255, 255, 255), // Kartenfarbe basierend auf dem Theme
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15), // Rundung der Karte
                     side: BorderSide(
-                      color: isDarkMode ? const Color.fromARGB(185, 255, 255, 255) : const Color.fromARGB(136, 61, 61, 61), // Rahmenfarbe basierend auf dem Theme
+                      color: isDarkMode ? const Color.fromARGB(199, 255, 255, 255) : const Color.fromARGB(136, 61, 61, 61), // Rahmenfarbe basierend auf dem Theme
                       width: 0.1,
                     ),
                   ),
