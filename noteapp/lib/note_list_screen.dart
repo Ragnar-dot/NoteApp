@@ -104,7 +104,14 @@ class _NoteListScreenState extends State<NoteListScreen> {
               itemBuilder: (context, index) {
                 final note = provider.notes[index]; // Die tatsächliche Notiz
                 return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 8),
+                  margin: const EdgeInsets.symmetric(vertical: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15), // Rundung der Karte
+                    side: BorderSide(
+                      color: isDarkMode ? const Color.fromARGB(185, 255, 255, 255) : const Color.fromARGB(136, 61, 61, 61), // Rahmenfarbe basierend auf dem Theme
+                      width: 0.1,
+                    ),
+                  ),
                   child: ListTile(
                     title: Text(
                       note.title,
@@ -113,6 +120,9 @@ class _NoteListScreenState extends State<NoteListScreen> {
                         decoration: note.isCompleted
                             ? TextDecoration.lineThrough
                             : TextDecoration.none,
+                        decorationColor: note.isCompleted ? Colors.red : Colors.transparent, // Durchgestrichen, wenn erledigt
+                  
+                        
                       ),
                     ),
                     subtitle: Column(
@@ -187,6 +197,7 @@ class _NoteListScreenState extends State<NoteListScreen> {
 
   // Bestätigungsdialog zum Löschen einer Notiz
   void _showDeleteDialog(BuildContext context, NoteProvider provider, int index) {
+    final note = provider.notes[index]; // Define the 'note' variable
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -202,7 +213,7 @@ class _NoteListScreenState extends State<NoteListScreen> {
             ),
             TextButton(
               onPressed: () {
-                provider.deleteNoteAt(index); // Notiz löschen
+                provider.deleteNote(note); // Notiz löschen
                 Navigator.of(context).pop(); // Dialog schließen
               },
               child: Text(

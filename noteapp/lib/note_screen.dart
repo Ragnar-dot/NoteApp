@@ -43,7 +43,7 @@ class NoteListScreen extends StatelessWidget {
                   );
                 },
                 onLongPress: () {
-                  provider.deleteNoteAt(index);
+                  provider.deleteNote(note);
                 },
               );
             },

@@ -31,12 +31,15 @@ class NoteProvider extends ChangeNotifier {
   }
 
   // Notiz löschen
-  void deleteNoteAt(int index) {
-    if (index >= 0 && index < _box.length) {
-      _box.deleteAt(index);
-      notifyListeners();
-    }
+void deleteNote(Note note) {
+  // Suche nach der Notiz im Speicher und lösche sie direkt
+  final noteIndex = _box.values.toList().indexOf(note);
+  
+  if (noteIndex != -1) {
+    _box.deleteAt(noteIndex); // Löscht die Notiz aus der Box
+    notifyListeners(); // Benachrichtigt die UI, dass sich die Daten geändert haben
   }
+}
 
   // Status einer Notiz umschalten (Erledigt/Unvollständig)
   void toggleNoteCompletion(Note note) {

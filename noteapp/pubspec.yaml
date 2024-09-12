@@ -39,10 +39,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
 
-    - assets/appainter_theme.json
+    
    
-    - assets/icon/icon/app_icon_background.png
-    - assets/icon/icon/app_icon_foreground.png
+    
     
     - assets/lang/en.json
     - assets/lang/de.json
@@ -52,5 +51,3 @@ flutter_icons:
   android: true
   ios: true
   
-  adaptive_icon_background: "assets/icon/icon/app_icon_background.png"     # Hintergrund für das adaptive Icon (Android 8.0+)
-  adaptive_icon_foreground: "assets/icon/icon/app_icon_foreground.png"  # Optional, für Android
