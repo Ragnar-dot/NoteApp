@@ -16,7 +16,7 @@ jobs:
           architecture: x64
 
       - run: flutter pub get
-        working-directory: NoteApp/noteapp
+        working-directory: NoteApp/
 
       - run: pod repo update
         working-directory: ios
