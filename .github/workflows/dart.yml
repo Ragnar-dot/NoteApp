@@ -1,3 +1,4 @@
+
 name: iOS-ipa-build
 
 on:
@@ -15,29 +16,39 @@ jobs:
           channel: 'stable'
           architecture: x64
 
+      - name: Check current directory
+        run: pwd
+
+      - name: List contents of current directory
+        run: ls -la
+
+      - name: List contents of noteapp directory
+        run: ls -la NoteApp
+
       - run: flutter pub get
-        working-directory: NoteApp/
+        working-directory: NoteApp
 
       - run: pod repo update
-        working-directory: ios
+        working-directory: NoteApp/ios
 
       - run: flutter build ios --release --no-codesign
+        working-directory: NoteApp
 
       - run: mkdir Payload
-        working-directory: build/ios/iphoneos
+        working-directory: NoteApp/build/ios/iphoneos
 
-      - run: mv Runner.app/ Payload
-        working-directory: build/ios/iphoneos
+      - run: mv Runner.app Payload
+        working-directory: NoteApp/build/ios/iphoneos
 
       - name: Zip output
         run: zip -qq -r -9 FlutterIpaExport.ipa Payload
-        working-directory: build/ios/iphoneos
+        working-directory: NoteApp/build/ios/iphoneos
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: build/ios/iphoneos/FlutterIpaExport.ipa
+          file: NoteApp/build/ios/iphoneos/FlutterIpaExport.ipa
           tag: v1.0
           overwrite: true
-          body: "This is first release"
+          body: "This is the first release"
