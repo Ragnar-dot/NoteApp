@@ -18,7 +18,7 @@ class NoteListScreen extends StatefulWidget {
 
 class _NoteListScreenState extends State<NoteListScreen> {
   Map<String, String> _localizedStrings = {};
-  String currentLanguage = 'en'; // Standardmäßig Englisch
+  String currentLanguage = 'de'; // Standardmäßig Englisch
 
   @override
   void initState() {
